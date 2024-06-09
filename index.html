@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .contact-form {
+            max-width: 500px;
+            margin: auto;
+            padding: 1em;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .contact-form h2 {
+            margin-bottom: 1em;
+        }
+        .contact-form label {
+            margin-bottom: .5em;
+            color: #333333;
+            display: block;
+        }
+        .contact-form input, .contact-form textarea {
+            border: 1px solid #CCCCCC;
+            padding: 1em;
+            font-size: 1em;
+            margin-bottom: 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .contact-form button {
+            padding: 1em;
+            color: #fff;
+            background-color: #5ab4f4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #3a9cd4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="contact-form">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    (function() {
+      emailjs.init({
+        publicKey: "pfMy0k54S4mX7ydM1",
+      });
+    })();
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        emailjs.sendForm('service_1jibu47', 'template_03sgdcp', this)
+            .then(function() {
+                alert('Your message has been sent successfully!');
+            }, function(error) {
+                alert('Failed to send the message, please try again later.');
+            });
+    });
+</script>
+
+</body>
+</html>
